@@ -41,6 +41,6 @@ open index.html        # view the story
 
 ## Credits
 
-Paul Schneider · [Shoulders](https://shoulde.rs) · paul@shoulde.rs
+Paul Schneider · [Shoulders](https://shoulde.rs)
 
 Built with Claude Code. Data: Deutscher Bundestag.
