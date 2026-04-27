@@ -1,0 +1,576 @@
+{
+  "meta": {
+    "total_kommentars": 1027516,
+    "total_sessions": 1690,
+    "date_range": [
+      "1998-10-26",
+      "2026-04-23"
+    ],
+    "wahlperioden": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "generated": "2026-04-27T15:00:59.642Z"
+  },
+  "hypotheses": {
+    "afd": {
+      "h1": {
+        "hypothesis": "H1",
+        "outcome": "zurufe",
+        "breakpoint_date": "2017-10-24",
+        "n": 1690,
+        "pre_mean": 85.40498710232158,
+        "post_mean": 308.4193548387097,
+        "pct_change": 261.1256968743525,
+        "level_change": 61.02598598069733,
+        "level_change_se": 15.490876645600625,
+        "level_change_ci": [
+          30.6638677553201,
+          91.38810420607456
+        ],
+        "level_change_p": 0.00008169338479735444,
+        "slope_change": 0.30346523178933005,
+        "slope_change_se": 0.050988939133055404,
+        "slope_change_p": 2.6647073436691926e-9,
+        "r2": 0.5228358686284111,
+        "permutation_p": 0.5564435564435565,
+        "effect_meaningful": true,
+        "min_meaningful_pct": 20
+      },
+      "h2": {
+        "hypothesis": "H2",
+        "outcome": "widerspruch",
+        "breakpoint_date": "2017-10-24",
+        "n": 1690,
+        "pre_mean": 3.4290627687016335,
+        "post_mean": 3.4003795066413662,
+        "pct_change": -0.8364752702129099,
+        "level_change": 1.3902909998405306,
+        "level_change_se": 0.24360873503323413,
+        "level_change_ci": [
+          0.9128178791753918,
+          1.8677641205056694
+        ],
+        "level_change_p": 1.1527395704646892e-8,
+        "slope_change": 0.002478572939403033,
+        "slope_change_se": 0.0007944395519744285,
+        "slope_change_p": 0.0018092518300489857,
+        "r2": 0.052775167298493186,
+        "permutation_p": 0.1918081918081918,
+        "effect_meaningful": false,
+        "min_meaningful_pct": 20
+      },
+      "h3": {
+        "hypothesis": "H3",
+        "outcome": "mood_ratio",
+        "breakpoint_date": "2017-10-24",
+        "n": 1690,
+        "pre_mean": 0.19553109300773666,
+        "post_mean": 0.06907098096733207,
+        "pct_change": -64.67519313432206,
+        "level_change": -0.0457432125125678,
+        "level_change_se": 0.020429588007178093,
+        "level_change_ci": [
+          -0.08578520500663686,
+          -0.005701220018498737
+        ],
+        "level_change_p": 0.02515148743772766,
+        "slope_change": 0.000042321873769915366,
+        "slope_change_se": 0.00002665404711703453,
+        "slope_change_p": 0.11232667513515593,
+        "r2": 0.035012608037245485,
+        "permutation_p": 0.5114885114885115,
+        "effect_meaningful": true,
+        "min_meaningful_pct": 15
+      },
+      "h4": {
+        "hypothesis": "H4",
+        "outcome": "heiterkeit",
+        "breakpoint_date": "2017-10-24",
+        "n": 1690,
+        "pre_mean": 6.294926913155632,
+        "post_mean": 8.601518026565465,
+        "pct_change": 36.64206344619089,
+        "level_change": 0.2948417426892931,
+        "level_change_se": 0.6206212488728807,
+        "level_change_ci": [
+          -0.9215759051015531,
+          1.5112593904801392
+        ],
+        "level_change_p": 0.63473342277546,
+        "slope_change": -0.002695724777806177,
+        "slope_change_se": 0.0016615715494406485,
+        "slope_change_p": 0.10471886144799347,
+        "r2": 0.06927887396394528,
+        "permutation_p": 0.8331668331668332,
+        "effect_meaningful": true,
+        "min_meaningful_pct": 15
+      }
+    },
+    "gruene": {
+      "h5": {
+        "hypothesis": "H5",
+        "outcome": "heiterkeit",
+        "group_a_label": "Grüne in govt (WP14-15)",
+        "group_b_label": "Grüne in opp (WP16-17)",
+        "group_a_n": 438,
+        "group_b_n": 486,
+        "group_a_mean": 5.0479452054794525,
+        "group_b_mean": 6.425925925925926,
+        "diff": -1.3779807204464731,
+        "pct_diff": -21.44408037582408,
+        "cohens_d": -0.29698956089965084,
+        "welch_t": -4.539246364544504,
+        "welch_p": 0.0000056510142103505245,
+        "mannwhitney_p": 0.000007675447730726148,
+        "effect_meaningful": true,
+        "min_meaningful_pct": 15
+      },
+      "h6": {
+        "hypothesis": "H6",
+        "outcome": "mood_ratio",
+        "group_a_label": "Grüne in govt (WP14-15)",
+        "group_b_label": "Grüne in opp (WP16-17)",
+        "group_a_n": 438,
+        "group_b_n": 486,
+        "group_a_mean": 0.21461900312113,
+        "group_b_mean": 0.2373792375396467,
+        "diff": -0.02276023441851671,
+        "pct_diff": -9.588131908425787,
+        "cohens_d": -0.048917259601689474,
+        "welch_t": -0.7707587007268505,
+        "welch_p": 0.4408498400731835,
+        "mannwhitney_p": 0.18121089317238948,
+        "effect_meaningful": false,
+        "min_meaningful_pct": 15
+      }
+    },
+    "smartphone": {
+      "h7": {
+        "hypothesis": "H7",
+        "outcome": "intensity_ratio",
+        "breakpoint_date": "2009-10-27",
+        "n": 911,
+        "pre_mean": 0.0027073999516487018,
+        "post_mean": 0.0035542820598897964,
+        "pct_change": 31.280273449269153,
+        "level_change": 0.00456821403386392,
+        "level_change_se": 0.0014323057111668396,
+        "level_change_ci": [
+          0.0017608948399769138,
+          0.007375533227750926
+        ],
+        "level_change_p": 0.0014257512595110544,
+        "slope_change": -0.000005207280753363177,
+        "slope_change_se": 0.000005538162722062615,
+        "slope_change_p": 0.3470871594809579,
+        "r2": 0.017465588087037687,
+        "permutation_p": 0.03996003996003996,
+        "effect_meaningful": true,
+        "min_meaningful_pct": 10
+      },
+      "h8": {
+        "hypothesis": "H8-noise",
+        "outcome": "noise_total",
+        "breakpoint_date": "2009-10-27",
+        "n": 911,
+        "pre_mean": 406.7875894988067,
+        "post_mean": 519.0813008130082,
+        "pct_change": 27.604999319806154,
+        "level_change": 7.236177059291549,
+        "level_change_se": 25.014780982856788,
+        "level_change_ci": [
+          -41.79279366710775,
+          56.26514778569085
+        ],
+        "level_change_p": 0.7723702715504279,
+        "slope_change": 0.2512728319413178,
+        "slope_change_se": 0.10004636696415288,
+        "slope_change_p": 0.012019790552722842,
+        "r2": 0.050145856981107295,
+        "permutation_p": 0.8411588411588412,
+        "effect_meaningful": true,
+        "min_meaningful_pct": 10
+      }
+    }
+  },
+  "placebos": [
+    {
+      "offset": 15,
+      "h1_p": 0,
+      "h3_p": 0.008598484932683004
+    },
+    {
+      "offset": 16,
+      "h1_p": 0,
+      "h3_p": 0.5390400522939145
+    },
+    {
+      "offset": 17,
+      "h1_p": 0.002865334009143794,
+      "h3_p": 0.7225690977931138
+    },
+    {
+      "offset": 20,
+      "h1_p": 0.011590181359159235,
+      "h3_p": 0.08052966577610698
+    }
+  ],
+  "year_summary": [
+    {
+      "year": 1998,
+      "sessions": 14,
+      "beifall_per_session": 294.85714285714283,
+      "zurufe_per_session": 52.285714285714285,
+      "heiterkeit_per_session": 3.2857142857142856,
+      "lachen_per_session": 7.928571428571429,
+      "widerspruch_per_session": 5.357142857142857,
+      "total_per_session": 364.35714285714283,
+      "mood_ratio_mean": 0.2536795073664212,
+      "intensity_ratio_mean": 0.008545270388702819
+    },
+    {
+      "year": 1999,
+      "sessions": 65,
+      "beifall_per_session": 353.2,
+      "zurufe_per_session": 73.95384615384616,
+      "heiterkeit_per_session": 5.769230769230769,
+      "lachen_per_session": 8.707692307692307,
+      "widerspruch_per_session": 5,
+      "total_per_session": 447.2153846153846,
+      "mood_ratio_mean": 0.19618290813026332,
+      "intensity_ratio_mean": 0.005064218272067241
+    },
+    {
+      "year": 2000,
+      "sessions": 62,
+      "beifall_per_session": 342.7903225806452,
+      "zurufe_per_session": 64.95161290322581,
+      "heiterkeit_per_session": 5.548387096774194,
+      "lachen_per_session": 7.612903225806452,
+      "widerspruch_per_session": 4.838709677419355,
+      "total_per_session": 426.2903225806452,
+      "mood_ratio_mean": 0.19768241658888247,
+      "intensity_ratio_mean": 0.0019027273009103267
+    },
+    {
+      "year": 2001,
+      "sessions": 68,
+      "beifall_per_session": 331.6029411764706,
+      "zurufe_per_session": 71.08823529411765,
+      "heiterkeit_per_session": 4.867647058823529,
+      "lachen_per_session": 7.882352941176471,
+      "widerspruch_per_session": 4.25,
+      "total_per_session": 420.22058823529414,
+      "mood_ratio_mean": 0.1783100692863932,
+      "intensity_ratio_mean": 0.003408396691451243
+    },
+    {
+      "year": 2002,
+      "sessions": 60,
+      "beifall_per_session": 343.15,
+      "zurufe_per_session": 68.81666666666666,
+      "heiterkeit_per_session": 4.783333333333333,
+      "lachen_per_session": 7.716666666666667,
+      "widerspruch_per_session": 4.8,
+      "total_per_session": 429.85,
+      "mood_ratio_mean": 0.24514116278952916,
+      "intensity_ratio_mean": 0.004235832501291091
+    },
+    {
+      "year": 2003,
+      "sessions": 66,
+      "beifall_per_session": 311.92424242424244,
+      "zurufe_per_session": 56.18181818181818,
+      "heiterkeit_per_session": 4.454545454545454,
+      "lachen_per_session": 6.454545454545454,
+      "widerspruch_per_session": 3.257575757575758,
+      "total_per_session": 382.95454545454544,
+      "mood_ratio_mean": 0.21645268339904822,
+      "intensity_ratio_mean": 0.0025015950017550762
+    },
+    {
+      "year": 2004,
+      "sessions": 65,
+      "beifall_per_session": 313.9846153846154,
+      "zurufe_per_session": 60.738461538461536,
+      "heiterkeit_per_session": 5.461538461538462,
+      "lachen_per_session": 5.615384615384615,
+      "widerspruch_per_session": 4.246153846153846,
+      "total_per_session": 390.5692307692308,
+      "mood_ratio_mean": 0.25920459003122853,
+      "intensity_ratio_mean": 0.00272676002450272
+    },
+    {
+      "year": 2005,
+      "sessions": 47,
+      "beifall_per_session": 300.93617021276594,
+      "zurufe_per_session": 56.1063829787234,
+      "heiterkeit_per_session": 4.829787234042553,
+      "lachen_per_session": 4.8936170212765955,
+      "widerspruch_per_session": 3.4893617021276597,
+      "total_per_session": 370.74468085106383,
+      "mood_ratio_mean": 0.21378564822140692,
+      "intensity_ratio_mean": 0.004653006606813493
+    },
+    {
+      "year": 2006,
+      "sessions": 65,
+      "beifall_per_session": 385.0615384615385,
+      "zurufe_per_session": 52.15384615384615,
+      "heiterkeit_per_session": 7.4,
+      "lachen_per_session": 3.3846153846153846,
+      "widerspruch_per_session": 3.4307692307692306,
+      "total_per_session": 452.2307692307692,
+      "mood_ratio_mean": 0.24681160689302337,
+      "intensity_ratio_mean": 0.001973919140437398
+    },
+    {
+      "year": 2007,
+      "sessions": 60,
+      "beifall_per_session": 360.28333333333336,
+      "zurufe_per_session": 47.25,
+      "heiterkeit_per_session": 6.516666666666667,
+      "lachen_per_session": 4.216666666666667,
+      "widerspruch_per_session": 3.033333333333333,
+      "total_per_session": 421.75,
+      "mood_ratio_mean": 0.2278053192393372,
+      "intensity_ratio_mean": 0.002075360008453668
+    },
+    {
+      "year": 2008,
+      "sessions": 63,
+      "beifall_per_session": 351.7142857142857,
+      "zurufe_per_session": 49.41269841269841,
+      "heiterkeit_per_session": 6.190476190476191,
+      "lachen_per_session": 3.0793650793650795,
+      "widerspruch_per_session": 3.365079365079365,
+      "total_per_session": 414.031746031746,
+      "mood_ratio_mean": 0.19273161458512486,
+      "intensity_ratio_mean": 0.0015343801243579282
+    },
+    {
+      "year": 2009,
+      "sessions": 49,
+      "beifall_per_session": 338.83673469387753,
+      "zurufe_per_session": 52.63265306122449,
+      "heiterkeit_per_session": 5.979591836734694,
+      "lachen_per_session": 4.163265306122449,
+      "widerspruch_per_session": 3.2857142857142856,
+      "total_per_session": 405.2244897959184,
+      "mood_ratio_mean": 0.4293494850378097,
+      "intensity_ratio_mean": 0.005999461467269587
+    },
+    {
+      "year": 2010,
+      "sessions": 69,
+      "beifall_per_session": 405.81159420289856,
+      "zurufe_per_session": 67.02898550724638,
+      "heiterkeit_per_session": 5.579710144927536,
+      "lachen_per_session": 6.260869565217392,
+      "widerspruch_per_session": 3.3768115942028984,
+      "total_per_session": 488.3478260869565,
+      "mood_ratio_mean": 0.18798045750146014,
+      "intensity_ratio_mean": 0.005331773346962703
+    },
+    {
+      "year": 2011,
+      "sessions": 68,
+      "beifall_per_session": 384.04411764705884,
+      "zurufe_per_session": 68.73529411764706,
+      "heiterkeit_per_session": 6.617647058823529,
+      "lachen_per_session": 6.882352941176471,
+      "widerspruch_per_session": 2.8970588235294117,
+      "total_per_session": 469.52941176470586,
+      "mood_ratio_mean": 0.19731549689982938,
+      "intensity_ratio_mean": 0.003486337887129657
+    },
+    {
+      "year": 2012,
+      "sessions": 65,
+      "beifall_per_session": 379.6307692307692,
+      "zurufe_per_session": 64.0923076923077,
+      "heiterkeit_per_session": 6.2153846153846155,
+      "lachen_per_session": 7.2153846153846155,
+      "widerspruch_per_session": 2.923076923076923,
+      "total_per_session": 460.53846153846155,
+      "mood_ratio_mean": 0.21880890380317009,
+      "intensity_ratio_mean": 0.003148494592357594
+    },
+    {
+      "year": 2013,
+      "sessions": 44,
+      "beifall_per_session": 349.40909090909093,
+      "zurufe_per_session": 76.72727272727273,
+      "heiterkeit_per_session": 7.386363636363637,
+      "lachen_per_session": 7.363636363636363,
+      "widerspruch_per_session": 3.522727272727273,
+      "total_per_session": 444.97727272727275,
+      "mood_ratio_mean": 0.24148837025811762,
+      "intensity_ratio_mean": 0.0067471580392680025
+    },
+    {
+      "year": 2014,
+      "sessions": 65,
+      "beifall_per_session": 395.2,
+      "zurufe_per_session": 166.06153846153848,
+      "heiterkeit_per_session": 9.36923076923077,
+      "lachen_per_session": 3.1076923076923078,
+      "widerspruch_per_session": 2.169230769230769,
+      "total_per_session": 576.3076923076923,
+      "mood_ratio_mean": 0.07707020791031373,
+      "intensity_ratio_mean": 0.0019518942863449476
+    },
+    {
+      "year": 2015,
+      "sessions": 70,
+      "beifall_per_session": 381.8857142857143,
+      "zurufe_per_session": 173.21428571428572,
+      "heiterkeit_per_session": 7.328571428571428,
+      "lachen_per_session": 3.057142857142857,
+      "widerspruch_per_session": 2.257142857142857,
+      "total_per_session": 568.2428571428571,
+      "mood_ratio_mean": 0.06713805212118681,
+      "intensity_ratio_mean": 0.0013408384784663217
+    },
+    {
+      "year": 2016,
+      "sessions": 63,
+      "beifall_per_session": 373.5238095238095,
+      "zurufe_per_session": 185.63492063492063,
+      "heiterkeit_per_session": 8.174603174603174,
+      "lachen_per_session": 3.3968253968253967,
+      "widerspruch_per_session": 2.0317460317460316,
+      "total_per_session": 573.2222222222222,
+      "mood_ratio_mean": 0.06833806489259629,
+      "intensity_ratio_mean": 0.001313816534530241
+    },
+    {
+      "year": 2017,
+      "sessions": 40,
+      "beifall_per_session": 398.1,
+      "zurufe_per_session": 196.75,
+      "heiterkeit_per_session": 8.425,
+      "lachen_per_session": 4.6,
+      "widerspruch_per_session": 2.475,
+      "total_per_session": 610.7,
+      "mood_ratio_mean": 0.08568731549205424,
+      "intensity_ratio_mean": 0.003751686708784409
+    },
+    {
+      "year": 2018,
+      "sessions": 67,
+      "beifall_per_session": 564.5671641791045,
+      "zurufe_per_session": 233.73134328358208,
+      "heiterkeit_per_session": 8.194029850746269,
+      "lachen_per_session": 9.776119402985074,
+      "widerspruch_per_session": 3.4776119402985075,
+      "total_per_session": 820.3731343283582,
+      "mood_ratio_mean": 0.0885312656994025,
+      "intensity_ratio_mean": 0.0030409115247717524
+    },
+    {
+      "year": 2019,
+      "sessions": 66,
+      "beifall_per_session": 575.8030303030303,
+      "zurufe_per_session": 271.3939393939394,
+      "heiterkeit_per_session": 7.818181818181818,
+      "lachen_per_session": 8.181818181818182,
+      "widerspruch_per_session": 2.8181818181818183,
+      "total_per_session": 866.3030303030303,
+      "mood_ratio_mean": 0.06076702318857001,
+      "intensity_ratio_mean": 0.0011537051969520873
+    },
+    {
+      "year": 2020,
+      "sessions": 64,
+      "beifall_per_session": 584.03125,
+      "zurufe_per_session": 240.65625,
+      "heiterkeit_per_session": 10.5625,
+      "lachen_per_session": 9.015625,
+      "widerspruch_per_session": 3.390625,
+      "total_per_session": 847.875,
+      "mood_ratio_mean": 0.0856639091941295,
+      "intensity_ratio_mean": 0.0008632382981450032
+    },
+    {
+      "year": 2021,
+      "sessions": 46,
+      "beifall_per_session": 549.5217391304348,
+      "zurufe_per_session": 216.15217391304347,
+      "heiterkeit_per_session": 8.065217391304348,
+      "lachen_per_session": 9.478260869565217,
+      "widerspruch_per_session": 2.847826086956522,
+      "total_per_session": 786.304347826087,
+      "mood_ratio_mean": 0.08295415444384115,
+      "intensity_ratio_mean": 0.003959687913525964
+    },
+    {
+      "year": 2022,
+      "sessions": 68,
+      "beifall_per_session": 656.3676470588235,
+      "zurufe_per_session": 309.02941176470586,
+      "heiterkeit_per_session": 8.102941176470589,
+      "lachen_per_session": 9.367647058823529,
+      "widerspruch_per_session": 3.926470588235294,
+      "total_per_session": 987.0147058823529,
+      "mood_ratio_mean": 0.06082747425085309,
+      "intensity_ratio_mean": 0.0018197174003900067
+    },
+    {
+      "year": 2023,
+      "sessions": 68,
+      "beifall_per_session": 648.0882352941177,
+      "zurufe_per_session": 408.47058823529414,
+      "heiterkeit_per_session": 10.014705882352942,
+      "lachen_per_session": 12.75,
+      "widerspruch_per_session": 3.838235294117647,
+      "total_per_session": 1083.6029411764705,
+      "mood_ratio_mean": 0.057828091948347475,
+      "intensity_ratio_mean": 0.0013796718198979536
+    },
+    {
+      "year": 2024,
+      "sessions": 63,
+      "beifall_per_session": 615.0793650793651,
+      "zurufe_per_session": 420.87301587301585,
+      "heiterkeit_per_session": 8,
+      "lachen_per_session": 12.238095238095237,
+      "widerspruch_per_session": 4.126984126984127,
+      "total_per_session": 1060.4761904761904,
+      "mood_ratio_mean": 0.049065699962348504,
+      "intensity_ratio_mean": 0.0017156864564740301
+    },
+    {
+      "year": 2025,
+      "sessions": 57,
+      "beifall_per_session": 610.7894736842105,
+      "zurufe_per_session": 335.94736842105266,
+      "heiterkeit_per_session": 7.771929824561403,
+      "lachen_per_session": 11.912280701754385,
+      "widerspruch_per_session": 2.7017543859649122,
+      "total_per_session": 969.3508771929825,
+      "mood_ratio_mean": 0.06633788425361256,
+      "intensity_ratio_mean": 0.002778902793047593
+    },
+    {
+      "year": 2026,
+      "sessions": 23,
+      "beifall_per_session": 575.4782608695652,
+      "zurufe_per_session": 366.4347826086956,
+      "heiterkeit_per_session": 9.173913043478262,
+      "lachen_per_session": 14.652173913043478,
+      "widerspruch_per_session": 2.608695652173913,
+      "total_per_session": 968.8260869565217,
+      "mood_ratio_mean": 0.06420190414061477,
+      "intensity_ratio_mean": 0.0005632227853495171
+    }
+  ],
+  "bonferroni_alpha": 0.00625
+}

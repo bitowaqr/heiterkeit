@@ -1,0 +1,5 @@
+.cursor
+node_modules/
+data/kommentare.jsonl
+data/protocols/
+.DS_Store

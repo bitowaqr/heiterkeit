@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heiterkeit</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+:root {
+  --stone-900: #111116;
+  --stone-800: #1a1a22;
+  --stone-600: #3a3a44;
+  --stone-400: #5c5c68;
+  --stone-300: #8a8a96;
+  --stone-200: #c4c4cc;
+  --stone-100: #e8e8ec;
+  --stone-50: #f5f5f7;
+  --cadet: #5f9ea0;
+  --red-muted: #b85450;
+  --green-muted: #2e8b57;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--stone-600);
+  background: #fff;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography ── */
+
+h1, h2, h3 {
+  font-family: 'Crimson Text', serif;
+  font-weight: 600;
+  color: var(--stone-900);
+  letter-spacing: -0.02em;
+}
+
+.section-label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--cadet);
+  margin-bottom: 12px;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+/* ── Hero ── */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10vw;
+  border-bottom: 1px solid var(--stone-100);
+}
+
+.hero h1 {
+  font-size: 72px;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.hero .subtitle {
+  font-family: 'Crimson Text', serif;
+  font-size: 24px;
+  color: var(--stone-600);
+  max-width: 640px;
+  line-height: 1.45;
+  margin-bottom: 48px;
+}
+
+.hero .definition {
+  font-family: 'Crimson Text', serif;
+  font-size: 18px;
+  color: var(--stone-400);
+  max-width: 600px;
+  line-height: 1.55;
+  margin-bottom: 36px;
+}
+
+.hero .definition em {
+  color: var(--stone-300);
+}
+
+.hero .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--stone-300);
+  letter-spacing: 0.05em;
+}
+
+.hero .meta span {
+  margin-right: 32px;
+}
+
+/* ── Scrollytelling Layout ── */
+
+.scroll-container {
+  position: relative;
+}
+
+.chart-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.chart-sticky svg {
+  overflow: visible;
+}
+
+.scroll-text {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.step {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 0 10vw;
+  pointer-events: auto;
+}
+
+.step:first-child {
+  margin-top: -100vh;
+}
+
+.step-content {
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  padding: 40px 44px;
+  border-top: 2px solid var(--stone-900);
+}
+
+.step-content h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+
+.step-content p {
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.step-content .stat-callout {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--stone-900);
+  margin: 20px 0;
+  line-height: 1.1;
+}
+
+.step-content .stat-callout .unit {
+  font-size: 14px;
+  color: var(--stone-400);
+  display: block;
+  margin-top: 4px;
+}
+
+.step-content .stat-callout .direction {
+  font-size: 14px;
+  display: block;
+  margin-top: 4px;
+}
+
+.step-content .stat-callout .direction.up { color: var(--red-muted); }
+.step-content .stat-callout .direction.down { color: var(--green-muted); }
+
+/* ── Stats Section ── */
+
+.stats-section {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 120px 10vw;
+  border-top: 1px solid var(--stone-100);
+}
+
+.stats-section h2 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.stats-section p {
+  margin-bottom: 20px;
+  max-width: 640px;
+}
+
+
+/* ── Footer ── */
+
+.footer {
+  padding: 80px 10vw;
+  border-top: 1px solid var(--stone-100);
+  font-size: 13px;
+  color: var(--stone-300);
+}
+
+.footer a { color: var(--stone-400); }
+
+/* ── Chart Styles ── */
+
+.axis text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  fill: var(--stone-400);
+}
+
+.axis line, .axis path {
+  stroke: var(--stone-200);
+  stroke-width: 1;
+}
+
+.grid line {
+  stroke: var(--stone-100);
+  stroke-width: 1;
+}
+
+.annotation-line {
+  stroke: var(--red-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+}
+
+.annotation-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  fill: var(--red-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.loess-line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.data-dot {
+  opacity: 0.25;
+}
+
+/* ── Rankings ── */
+
+.rank-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  height: 32px;
+}
+
+.rank-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--stone-300);
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.rank-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--stone-600);
+  width: 200px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rank-bar-wrap {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 26px;
+}
+
+.rank-bar {
+  height: 100%;
+  min-width: 2px;
+  transition: width 0.8s ease-out;
+}
+
+.rank-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--stone-400);
+  margin-left: 8px;
+  flex-shrink: 0;
+  width: 48px;
+  text-align: right;
+}
+
+.party-row {
+  margin-bottom: 16px;
+}
+
+.party-row-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--stone-600);
+  margin-bottom: 4px;
+}
+
+.party-bar-track {
+  height: 20px;
+  background: var(--stone-900);
+  display: flex;
+  overflow: hidden;
+}
+
+.party-bar-h {
+  background: var(--cadet);
+  height: 100%;
+  transition: width 0.8s ease-out;
+}
+
+.party-bar-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--stone-400);
+  margin-top: 2px;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .hero { padding: 0 6vw; }
+  .hero h1 { font-size: 44px; }
+  .hero .subtitle { font-size: 18px; }
+  .step { padding: 0 4vw; }
+  .step-content { max-width: 100%; padding: 28px 24px; }
+  .stats-section { padding: 80px 6vw; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="section-label">// Research</div>
+  <h1>Hei | ter | keit</h1>
+  <div class="definition">
+    <em>noun, f.</em> — Cheerfulness, mirth, amusement. German parliamentary stenographers note it in parentheses — <span class="mono">(Heiterkeit)</span> — when the chamber is amused: a quiet, dignified form of collective laughter, distinct from <span class="mono">(Lachen)</span>, which is louder and often directed at someone.
+  </div>
+  <div class="subtitle">
+    An analysis of one million recorded reactions during Plenary sessions of the German Bundestag 1998-2026.
+  </div>
+  <div class="meta">
+    <span>1,027,516 annotations</span>
+    <span>1,699 sessions</span>
+    <span>1998–2026</span>
+    <span>WP 14–21</span>
+  </div>
+</section>
+
+<!-- ── Scrollytelling ── -->
+<section class="scroll-container" id="scroll-container">
+  <div class="chart-sticky">
+    <svg id="chart"></svg>
+  </div>
+  <div class="scroll-text" id="scroll-text">
+
+    <div class="step" data-step="total">
+      <div class="step-content">
+        <div class="section-label">// Volume</div>
+        <h2>Parliament gets louder</h2>
+        <p>Recorded reactions per session more than doubled since 1998 — from ~400 to over 1,000.</p>
+      </div>
+    </div>
+
+    <div class="step" data-step="mood">
+      <div class="step-content">
+        <div class="section-label">// Mood</div>
+        <h2>Less laughter, more shouting</h2>
+        <p>Amusement (Heiterkeit + Lachen) divided by confrontation (Zurufe + Widerspruch) - something happens around 2013...</p>
+      </div>
+    </div>
+
+    <div class="step" data-step="zurufe">
+      <div class="step-content">
+        <div class="section-label">// Heckling</div>
+        <h2>The heckling</h2>
+        <p>The Grand Coalition in 2013 triples heckling. AfD in 2017 doubles it again.</p>
+      </div>
+    </div>
+
+    <div class="step" data-step="drowned">
+      <div class="step-content">
+        <div class="section-label">// Heiterkeit</div>
+        <h2>Signal vs. Noise</h2>
+        <p>Heiterkeit per session barely changed over 25 years. But the explosion of Zurufe (=Heckling) buried it.</p>
+      </div>
+    </div>
+
+    <div class="step" data-step="haeme">
+      <div class="step-content">
+        <div class="section-label">// Häme</div>
+        <h2>Not all laughter is funny</h2>
+        <p>Lachen surged after 2017. The AfD accounts for 40–60% of all recorded laughter since WP19. Often directed at other MPs.</p>
+      </div>
+    </div>
+
+    <div class="step" data-step="haeme2">
+      <div class="step-content">
+        <div class="section-label">// Ratio</div>
+        <h2>The quality of laughter</h2>
+        <p>Heiterkeit as share of all laughter: peaked at 75% in the mid-2010s, below 40% by 2026. The Bundestag still laughs — but differently.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Rankings ── -->
+<section class="stats-section" id="rankings">
+  <div class="section-label">// Who</div>
+  <h2>The loudest voices</h2>
+  <p style="margin-bottom: 48px;">Stenographers record every audible remark from the floor — from single-word reactions like <span class="mono">(Genau!)</span> to full sentences. Totals across 1,690 sessions.</p>
+
+  <div style="max-width: 640px;">
+    <div class="section-label" style="margin-bottom: 20px;">// Top 10 Hecklers</div>
+    <div id="hecklers-chart" style="margin-bottom: 64px;"></div>
+
+    <div class="section-label" style="margin-bottom: 20px;">// What they shout</div>
+    <div id="wordcloud" style="margin-bottom: 64px;"></div>
+
+    <div class="section-label" style="margin-bottom: 20px;">// How each party laughs</div>
+    <p style="font-size: 13px; color: var(--stone-400); margin-bottom: 20px;">Share of laughter that is <span style="color: var(--cadet);">Heiterkeit</span> (gentle amusement) vs <span style="color: var(--stone-900);">Lachen</span> (louder, often directed).</p>
+    <div id="party-chart"></div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="section-label">// Method</div>
+  <h2>How this was built</h2>
+  <p>1,027,516 annotations from 1,690 plenary sessions (WP14–21, 1998–2026), extracted programmatically from official Bundestag Plenarprotokolle. WP18–21 from structured XML via dserver.bundestag.de, WP14–17 from the DIP API full-text endpoint.</p>
+  <p>Built with Claude Code (Anthropic) for data pipeline, statistical analysis, and visualisation.</p>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <p>Paul Schneider · <a href="https://shoulde.rs">Shoulders</a> · <a href="mailto:paul@shoulde.rs">paul@shoulde.rs</a> · 2026</p>
+  <p style="margin-top: 8px;">Data: Deutscher Bundestag.</p>
+</footer>
+
+<script>
+// ─── Configuration ───
+
+const W = Math.min(window.innerWidth * 0.85, 1100);
+const H = Math.min(window.innerHeight * 0.75, 600);
+const margin = { top: 40, right: 40, bottom: 50, left: 60 };
+const w = W - margin.left - margin.right;
+const h = H - margin.top - margin.bottom;
+
+const svg = d3.select("#chart")
+  .attr("width", W)
+  .attr("height", H);
+
+const g = svg.append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+
+// Colors (monochrome palette with one accent)
+const C = {
+  beifall: "#b8b8c4",
+  zurufe: "#111116",
+  heiterkeit: "#5f9ea0",
+  lachen: "#7ec8ca",
+  widerspruch: "#b85450",
+  total: "#5c5c68",
+  mood: "#5f9ea0",
+  intensity: "#5c5c68",
+  dots: "#c4c4cc",
+};
+
+// ─── Data Loading ───
+
+let sessions, results;
+
+let lachenData;
+
+Promise.all([
+  fetch("data/sessions.json").then(r => r.json()),
+  fetch("data/results.json").then(r => r.json()),
+  fetch("data/lachen.json").then(r => r.json()),
+]).then(([s, r, l]) => {
+  sessions = s.filter(d => d.d && d.d.length >= 10);
+  results = r;
+  lachenData = l;
+
+  // Parse dates
+  sessions.forEach(d => {
+    d.date = new Date(d.d);
+    d.year = d.date.getFullYear();
+  });
+
+  populateStats();
+  populateRankings();
+  setupCharts();
+  setupScroll();
+});
+
+// ─── Populate Stats Callouts ───
+
+function populateStats() {}
+
+function populateRankings() {
+  const hecklers = [
+    { name: "Stephan Brandner", party: "AfD", count: 8969 },
+    { name: "Matthias W. Birkwald", party: "Linke", count: 5617 },
+    { name: "Beatrix von Storch", party: "AfD", count: 4040 },
+    { name: "Heinrich L. Kolb", party: "FDP", count: 3700 },
+    { name: "Götz Frömming", party: "AfD", count: 3657 },
+    { name: "Michael Grosse-Brömer", party: "CDU/CSU", count: 3418 },
+    { name: "Bernd Baumann", party: "AfD", count: 3003 },
+    { name: "Britta Haßelmann", party: "Grüne", count: 2994 },
+    { name: "Jens Spahn", party: "CDU/CSU", count: 2474 },
+    { name: "Ulli Nissen", party: "SPD", count: 2387 },
+  ];
+
+  const partyColors = {
+    "AfD": "#009ee0",
+    "CDU/CSU": "#000000",
+    "SPD": "#e3000f",
+    "FDP": "#ffed00",
+    "Grüne": "#46962b",
+    "Linke": "#be3075",
+  };
+
+  const maxCount = hecklers[0].count;
+  const container = document.getElementById("hecklers-chart");
+
+  hecklers.forEach((h, i) => {
+    const row = document.createElement("div");
+    row.className = "rank-row";
+    const color = partyColors[h.party] || "var(--stone-400)";
+
+    const barPct = (h.count / maxCount * 100).toFixed(0);
+    row.innerHTML = `
+      <span class="rank-num">${i + 1}</span>
+      <span class="rank-name">${h.name} <span style="color:var(--stone-300)">${h.party}</span></span>
+      <div class="rank-bar-wrap">
+        <div class="rank-bar" style="width: ${barPct}%; background: ${color};"></div>
+      </div>
+      <span class="rank-count">${(h.count / 1000).toFixed(1)}k</span>
+    `;
+    container.appendChild(row);
+  });
+
+  // Word cloud
+  const phrases = [
+    ["So ist es!", 2856], ["Genau!", 2630], ["Richtig!", 1838], ["Hört! Hört!", 1298],
+    ["Nein!", 1253], ["Sehr richtig!", 1141], ["Sehr gut!", 1070], ["Aha!", 976],
+    ["Was?", 792], ["Das stimmt!", 707], ["Doch!", 626], ["Unglaublich!", 582],
+    ["Quatsch!", 536], ["So ein Quatsch!", 446], ["So ist das!", 384], ["Ach!", 352],
+    ["Das stimmt nicht!", 340], ["Ja, genau!", 300], ["Na ja!", 285],
+    ["Jawohl!", 248], ["Falsch!", 228], ["Unsinn!", 218], ["Eben!", 209],
+    ["Na, na, na!", 206], ["Bravo!", 191], ["Pfui!", 176], ["Wo denn?", 175],
+    ["Wahnsinn!", 165], ["Peinlich!", 150], ["So ein Unsinn!", 146],
+    ["Nee!", 133], ["So ein Blödsinn!", 133], ["Wohl wahr!", 136],
+    ["Schade!", 179], ["Danke!", 215], ["Ganz genau!", 205],
+  ];
+
+  const wcContainer = document.getElementById("wordcloud");
+  const maxPhr = phrases[0][1];
+
+  const cloud = document.createElement("div");
+  cloud.style.cssText = "line-height: 1.8; padding: 12px 0;";
+
+  phrases.forEach(([text, count]) => {
+    const span = document.createElement("span");
+    const size = 11 + Math.pow(count / maxPhr, 0.5) * 26;
+    const opacity = 0.35 + (count / maxPhr) * 0.65;
+    span.textContent = text;
+    span.style.cssText = `
+      font-family: 'JetBrains Mono', monospace;
+      font-size: ${size.toFixed(0)}px;
+      color: var(--stone-900);
+      opacity: ${opacity.toFixed(2)};
+      margin-right: 12px;
+      white-space: nowrap;
+      display: inline-block;
+    `;
+    cloud.appendChild(span);
+  });
+
+  wcContainer.appendChild(cloud);
+
+  // Party laughter comparison
+  const parties = [
+    { party: "CDU/CSU", heiterkeit: 8162, lachen: 6995 },
+    { party: "SPD", heiterkeit: 4864, lachen: 4746 },
+    { party: "FDP", heiterkeit: 929, lachen: 810 },
+    { party: "Linke", heiterkeit: 584, lachen: 750 },
+    { party: "Grüne", heiterkeit: 925, lachen: 1321 },
+    { party: "AfD", heiterkeit: 824, lachen: 2365 },
+  ];
+
+  const partyContainer = document.getElementById("party-chart");
+
+  parties.forEach(p => {
+    const total = p.heiterkeit + p.lachen;
+    const hPct = (p.heiterkeit / total * 100).toFixed(0);
+    const row = document.createElement("div");
+    row.className = "party-row";
+    row.innerHTML = `
+      <div class="party-row-label">${p.party}</div>
+      <div class="party-bar-track">
+        <div class="party-bar-h" style="width: ${hPct}%;"></div>
+      </div>
+      <div class="party-bar-pct">${hPct}% Heiterkeit · ${100 - hPct}% Lachen</div>
+    `;
+    partyContainer.appendChild(row);
+  });
+}
+
+// ─── Chart Setup ───
+
+let xScale, yScale, currentStep = null;
+
+function setupCharts() {
+  xScale = d3.scaleTime()
+    .domain(d3.extent(sessions, d => d.date))
+    .range([0, w]);
+
+  // Axes containers
+  g.append("g").attr("class", "axis x-axis").attr("transform", `translate(0,${h})`);
+  g.append("g").attr("class", "axis y-axis");
+  g.append("g").attr("class", "grid");
+  g.append("g").attr("class", "chart-content");
+  g.append("g").attr("class", "annotations");
+
+  updateChart("total");
+}
+
+// ─── LOESS smoother ───
+
+function loess(data, xFn, yFn, bandwidth = 0.15) {
+  const n = data.length;
+  const xs = data.map(xFn);
+  const ys = data.map(yFn);
+  const result = [];
+
+  const nPoints = Math.min(200, n);
+  const step = Math.max(1, Math.floor(n / nPoints));
+
+  for (let idx = 0; idx < n; idx += step) {
+    const x0 = xs[idx];
+    const dists = xs.map((x, i) => ({ i, d: Math.abs(x - x0) }));
+    dists.sort((a, b) => a.d - b.d);
+    const h = dists[Math.min(Math.floor(n * bandwidth), n - 1)].d || 1;
+
+    let sumW = 0, sumWX = 0, sumWY = 0, sumWXX = 0, sumWXY = 0;
+    for (const { i, d } of dists) {
+      const u = d / h;
+      if (u > 1) continue;
+      const w = (1 - u * u * u) ** 3; // tricube
+      const xi = xs[i], yi = ys[i];
+      sumW += w;
+      sumWX += w * xi;
+      sumWY += w * yi;
+      sumWXX += w * xi * xi;
+      sumWXY += w * xi * yi;
+    }
+    const denom = sumW * sumWXX - sumWX * sumWX;
+    if (Math.abs(denom) < 1e-10) {
+      result.push({ x: x0, y: sumWY / sumW });
+    } else {
+      const b = (sumW * sumWXY - sumWX * sumWY) / denom;
+      const a = (sumWY - b * sumWX) / sumW;
+      result.push({ x: x0, y: a + b * x0 });
+    }
+  }
+  return result;
+}
+
+// ─── Chart Update ───
+
+let updateTimer = null;
+
+function updateChart(step) {
+  if (step === currentStep) return;
+  currentStep = step;
+
+  if (updateTimer) clearTimeout(updateTimer);
+
+  const content = g.select(".chart-content");
+  const annot = g.select(".annotations");
+
+  // Immediately kill all running transitions and clear
+  content.selectAll("*").interrupt().remove();
+  annot.selectAll("*").interrupt().remove();
+  g.selectAll(".y-label").interrupt().remove();
+
+  const dur = 600;
+  updateTimer = setTimeout(() => {
+    drawStep(step, dur);
+    updateTimer = null;
+  }, 80);
+}
+
+function drawStep(step, dur) {
+  const content = g.select(".chart-content");
+  const annot = g.select(".annotations");
+
+  if (step === "total") {
+    drawTotal(content, annot, dur);
+  } else if (step === "mood") {
+    drawMood(content, annot, dur);
+  } else if (step === "zurufe") {
+    drawZurufe(content, annot, dur);
+  } else if (step === "drowned") {
+    drawDrowned(content, annot, dur);
+  } else if (step === "haeme") {
+    drawHaeme(content, annot, dur);
+  } else if (step === "haeme2") {
+    drawHaemeRatio(content, annot, dur);
+  }
+}
+
+function drawAxes(yDomain, yLabel, dur) {
+  const yS = d3.scaleLinear().domain(yDomain).range([h, 0]).nice();
+  yScale = yS;
+
+  g.select(".x-axis").transition().duration(dur)
+    .call(d3.axisBottom(xScale).ticks(8).tickFormat(d3.timeFormat("%Y")).tickSize(-4));
+
+  g.select(".y-axis").transition().duration(dur)
+    .call(d3.axisLeft(yS).ticks(6).tickSize(-4));
+
+  g.select(".grid").selectAll("line").remove();
+  const ticks = yS.ticks(6);
+  g.select(".grid").selectAll("line")
+    .data(ticks)
+    .join("line")
+    .attr("x1", 0).attr("x2", w)
+    .attr("y1", d => yS(d)).attr("y2", d => yS(d))
+    .style("opacity", 0)
+    .transition().duration(dur).style("opacity", 1);
+
+  // Y-axis label
+  g.selectAll(".y-label").remove();
+  g.append("text")
+    .attr("class", "y-label")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -h / 2).attr("y", -45)
+    .attr("text-anchor", "middle")
+    .style("font-family", "'JetBrains Mono', monospace")
+    .style("font-size", "10px")
+    .style("fill", "var(--stone-400)")
+    .style("text-transform", "uppercase")
+    .style("letter-spacing", "0.08em")
+    .style("opacity", 0)
+    .text(yLabel)
+    .transition().duration(dur).style("opacity", 1);
+
+  return yS;
+}
+
+function addAnnotationLine(annot, date, label, dur) {
+  const x = xScale(new Date(date));
+  annot.append("line")
+    .attr("class", "annotation-line")
+    .attr("x1", x).attr("x2", x).attr("y1", 0).attr("y2", h)
+    .style("opacity", 0)
+    .transition().duration(dur).style("opacity", 1);
+  annot.append("text")
+    .attr("class", "annotation-label")
+    .attr("x", x + 6).attr("y", 14)
+    .text(label)
+    .style("opacity", 0)
+    .transition().duration(dur).style("opacity", 1);
+}
+
+// ─── Individual Chart Draws ───
+
+function drawTotal(content, annot, dur) {
+  const yS = drawAxes([0, d3.max(sessions, d => d.t) * 1.1], "total per session", dur);
+
+  // Dots
+  content.selectAll("circle")
+    .data(sessions)
+    .join("circle")
+    .attr("class", "data-dot")
+    .attr("cx", d => xScale(d.date))
+    .attr("cy", d => yS(d.t))
+    .attr("r", 1.5)
+    .attr("fill", C.total)
+    .style("opacity", 0)
+    .transition().duration(dur).delay((_, i) => i * 0.3).style("opacity", 0.15);
+
+  // LOESS
+  const smoothed = loess(sessions, d => d.date.getTime(), d => d.t, 0.12);
+  const line = d3.line().x(d => xScale(new Date(d.x))).y(d => yS(d.y)).curve(d3.curveNatural);
+
+  content.append("path")
+    .datum(smoothed)
+    .attr("class", "loess-line")
+    .attr("stroke", C.total)
+    .attr("d", line)
+    .attr("stroke-dasharray", function() { return this.getTotalLength(); })
+    .attr("stroke-dashoffset", function() { return this.getTotalLength(); })
+    .transition().duration(dur * 2).ease(d3.easeQuadOut)
+    .attr("stroke-dashoffset", 0);
+
+  addAnnotationLine(annot, "2013-12-17", "Grand Coalition", dur);
+  addAnnotationLine(annot, "2017-10-24", "AfD enters", dur);
+}
+
+function drawMood(content, annot, dur) {
+  const yS = drawAxes([0, 0.5], "mood ratio", dur);
+
+  content.selectAll("circle")
+    .data(sessions)
+    .join("circle")
+    .attr("class", "data-dot")
+    .attr("cx", d => xScale(d.date))
+    .attr("cy", d => yS(d.mr))
+    .attr("r", 1.5)
+    .attr("fill", C.mood)
+    .style("opacity", 0)
+    .transition().duration(dur).delay((_, i) => i * 0.3).style("opacity", 0.15);
+
+  const smoothed = loess(sessions, d => d.date.getTime(), d => d.mr, 0.12);
+  const line = d3.line().x(d => xScale(new Date(d.x))).y(d => yS(d.y)).curve(d3.curveNatural);
+
+  content.append("path")
+    .datum(smoothed)
+    .attr("class", "loess-line")
+    .attr("stroke", C.mood)
+    .attr("d", line)
+    .attr("stroke-dasharray", function() { return this.getTotalLength(); })
+    .attr("stroke-dashoffset", function() { return this.getTotalLength(); })
+    .transition().duration(dur * 2).ease(d3.easeQuadOut)
+    .attr("stroke-dashoffset", 0);
+
+  addAnnotationLine(annot, "2013-12-17", "Grand Coalition", dur);
+  addAnnotationLine(annot, "2017-10-24", "AfD enters", dur);
+}
+
+function drawZurufe(content, annot, dur) {
+  const yS = drawAxes([0, d3.max(sessions, d => d.z) * 1.05], "zurufe per session", dur);
+
+  content.selectAll("circle")
+    .data(sessions)
+    .join("circle")
+    .attr("class", "data-dot")
+    .attr("cx", d => xScale(d.date))
+    .attr("cy", d => yS(d.z))
+    .attr("r", 1.5)
+    .attr("fill", C.zurufe)
+    .style("opacity", 0)
+    .transition().duration(dur).delay((_, i) => i * 0.3)
+    .style("opacity", 0.15);
+
+  const smoothed = loess(sessions, d => d.date.getTime(), d => d.z, 0.1);
+  const line = d3.line().x(d => xScale(new Date(d.x))).y(d => yS(d.y)).curve(d3.curveNatural);
+
+  content.append("path").datum(smoothed)
+    .attr("class", "loess-line").attr("stroke", C.zurufe).attr("d", line)
+    .attr("stroke-dasharray", function() { return this.getTotalLength(); })
+    .attr("stroke-dashoffset", function() { return this.getTotalLength(); })
+    .transition().duration(dur * 2).ease(d3.easeQuadOut).attr("stroke-dashoffset", 0);
+
+  addAnnotationLine(annot, "2013-12-17", "Grand Coalition", dur);
+  addAnnotationLine(annot, "2017-10-24", "AfD enters", dur);
+}
+
+function drawDrowned(content, annot, dur) {
+  // Dual line: Heiterkeit (flat) vs Zurufe (soaring) — normalised to 1998 baseline
+  const ys = results.year_summary.filter(d => d.year >= 1998 && d.year <= 2026);
+  const baseH = ys[1]?.heiterkeit_per_session || ys[0].heiterkeit_per_session;
+  const baseZ = ys[1]?.zurufe_per_session || ys[0].zurufe_per_session;
+
+  const xS = d3.scaleLinear().domain([1998, 2026]).range([0, w]);
+  const maxIdx = d3.max(ys, d => d.zurufe_per_session / baseZ);
+  const yS = d3.scaleLinear().domain([0, maxIdx * 1.1]).range([h, 0]).nice();
+  yScale = yS;
+
+  g.select(".x-axis").transition().duration(dur)
+    .call(d3.axisBottom(xS).ticks(8).tickFormat(d3.format("d")).tickSize(-4));
+  g.select(".y-axis").transition().duration(dur)
+    .call(d3.axisLeft(yS).ticks(6).tickFormat(d => d + "x").tickSize(-4));
+  g.select(".grid").selectAll("line").remove();
+  g.selectAll(".y-label").remove();
+  g.append("text").attr("class", "y-label")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -h / 2).attr("y", -45).attr("text-anchor", "middle")
+    .style("font-family", "'JetBrains Mono', monospace")
+    .style("font-size", "10px").style("fill", "var(--stone-400)")
+    .style("text-transform", "uppercase").style("letter-spacing", "0.08em")
+    .text("indexed to 1999 baseline")
+    .style("opacity", 0).transition().duration(dur).style("opacity", 1);
+
+  const lineGen = d3.line().curve(d3.curveMonotoneX);
+
+  // Zurufe line (soaring)
+  content.append("path")
+    .datum(ys)
+    .attr("fill", "none").attr("stroke", C.zurufe).attr("stroke-width", 2.5)
+    .attr("d", lineGen.x(d => xS(d.year)).y(d => yS(d.zurufe_per_session / baseZ)))
+    .attr("stroke-dasharray", function() { return this.getTotalLength(); })
+    .attr("stroke-dashoffset", function() { return this.getTotalLength(); })
+    .transition().duration(dur * 2).ease(d3.easeQuadOut).attr("stroke-dashoffset", 0);
+
+  // Heiterkeit line (flat)
+  content.append("path")
+    .datum(ys)
+    .attr("fill", "none").attr("stroke", C.heiterkeit).attr("stroke-width", 2.5)
+    .attr("d", lineGen.x(d => xS(d.year)).y(d => yS(d.heiterkeit_per_session / baseH)))
+    .attr("stroke-dasharray", function() { return this.getTotalLength(); })
+    .attr("stroke-dashoffset", function() { return this.getTotalLength(); })
+    .transition().duration(dur * 2).delay(300).ease(d3.easeQuadOut).attr("stroke-dashoffset", 0);
+
+  // Labels at end of lines
+  const lastY = ys[ys.length - 1];
+  content.append("text")
+    .attr("x", xS(lastY.year) + 8).attr("y", yS(lastY.zurufe_per_session / baseZ) + 4)
+    .style("font-family", "'JetBrains Mono', monospace").style("font-size", "11px")
+    .style("fill", C.zurufe).text("Zurufe")
+    .style("opacity", 0).transition().duration(dur).delay(dur).style("opacity", 1);
+
+  content.append("text")
+    .attr("x", xS(lastY.year) + 8).attr("y", yS(lastY.heiterkeit_per_session / baseH) + 4)
+    .style("font-family", "'JetBrains Mono', monospace").style("font-size", "11px")
+    .style("fill", C.heiterkeit).text("Heiterkeit")
+    .style("opacity", 0).transition().duration(dur).delay(dur).style("opacity", 1);
+
+  // 1x reference
+  content.append("line")
+    .attr("x1", 0).attr("x2", w).attr("y1", yS(1)).attr("y2", yS(1))
+    .attr("stroke", "var(--stone-200)").attr("stroke-width", 1).attr("stroke-dasharray", "3 3")
+    .style("opacity", 0).transition().duration(dur).style("opacity", 0.5);
+
+  addAnnotationLine(annot, "2013-12-17", "Grand Coalition", dur);
+  addAnnotationLine(annot, "2017-10-24", "AfD enters", dur);
+}
+
+function drawHaeme(content, annot, dur) {
+  if (!lachenData) return;
+
+  const xS = d3.scaleLinear().domain([1998, 2026]).range([0, w]);
+  const maxL = d3.max(lachenData, d => d.l_afd + d.l_cdu + d.l_spd + d.l_gru + d.l_fdp + d.l_lin + d.l_other);
+  const yS = d3.scaleLinear().domain([0, maxL * 1.1]).range([h, 0]).nice();
+  yScale = yS;
+
+  g.select(".x-axis").transition().duration(dur)
+    .call(d3.axisBottom(xS).ticks(8).tickFormat(d3.format("d")).tickSize(-4));
+  g.select(".y-axis").transition().duration(dur)
+    .call(d3.axisLeft(yS).ticks(6).tickSize(-4));
+  g.select(".grid").selectAll("line").remove();
+  g.selectAll(".y-label").remove();
+  g.append("text")
+    .attr("class", "y-label")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -h / 2).attr("y", -45)
+    .attr("text-anchor", "middle")
+    .style("font-family", "'JetBrains Mono', monospace")
+    .style("font-size", "10px")
+    .style("fill", "var(--stone-400)")
+    .style("text-transform", "uppercase")
+    .style("letter-spacing", "0.08em")
+    .text("lachen per session")
+    .style("opacity", 0)
+    .transition().duration(dur).style("opacity", 1);
+
+  // Stacked area: AfD on top (dark), rest below (light)
+  const parties = ["l_other", "l_lin", "l_fdp", "l_gru", "l_spd", "l_cdu", "l_afd"];
+  const colors = ["#d4d4dc", "#c4c4cc", "#b8b8c4", "#b8b8c4", "#b8b8c4", "#b8b8c4", "#111116"];
+  const opacities = [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.8];
+
+  const stack = d3.stack().keys(parties).order(d3.stackOrderNone);
+  const stacked = stack(lachenData);
+
+  const area = d3.area()
+    .x(d => xS(d.data.year))
+    .y0(d => yS(d[0]))
+    .y1(d => yS(d[1]))
+    .curve(d3.curveMonotoneX);
+
+  content.selectAll("path.area")
+    .data(stacked)
+    .join("path")
+    .attr("class", "area")
+    .attr("fill", (_, i) => colors[i])
+    .style("opacity", 0)
+    .attr("d", area)
+    .transition().duration(dur).delay((_, i) => i * 60)
+    .style("opacity", (_, i) => opacities[i]);
+
+  // Legend
+  const legend = content.append("g").attr("transform", `translate(${w - 100}, 10)`);
+  [["AfD", "#111116", 0.8], ["Other parties", "#b8b8c4", 0.3]].forEach(([label, color, op], i) => {
+    const ly = i * 18;
+    legend.append("rect").attr("x", 0).attr("y", ly).attr("width", 10).attr("height", 10)
+      .attr("fill", color).style("opacity", op);
+    legend.append("text").attr("x", 16).attr("y", ly + 9)
+      .text(label)
+      .style("font-family", "'JetBrains Mono', monospace")
+      .style("font-size", "10px")
+      .style("fill", "var(--stone-400)");
+  });
+  legend.style("opacity", 0).transition().duration(dur).delay(400).style("opacity", 1);
+
+  addAnnotationLine(annot, "2017-10-24", "AfD enters", dur);
+}
+
+function drawHaemeRatio(content, annot, dur) {
+  if (!lachenData) return;
+
+  const xS = d3.scaleLinear().domain([1998, 2026]).range([0, w]);
+  const yS = d3.scaleLinear().domain([0, 0.85]).range([h, 0]).nice();
+  yScale = yS;
+
+  g.select(".x-axis").transition().duration(dur)
+    .call(d3.axisBottom(xS).ticks(8).tickFormat(d3.format("d")).tickSize(-4));
+  g.select(".y-axis").transition().duration(dur)
+    .call(d3.axisLeft(yS).ticks(6).tickFormat(d3.format(".0%")).tickSize(-4));
+  g.select(".grid").selectAll("line").remove();
+  g.selectAll(".y-label").remove();
+  g.append("text")
+    .attr("class", "y-label")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -h / 2).attr("y", -45)
+    .attr("text-anchor", "middle")
+    .style("font-family", "'JetBrains Mono', monospace")
+    .style("font-size", "10px")
+    .style("fill", "var(--stone-400)")
+    .style("text-transform", "uppercase")
+    .style("letter-spacing", "0.08em")
+    .text("heiterkeit / (heiterkeit + lachen)")
+    .style("opacity", 0)
+    .transition().duration(dur).style("opacity", 1);
+
+  // Dots
+  content.selectAll("circle")
+    .data(lachenData.filter(d => d.year >= 1999))
+    .join("circle")
+    .attr("cx", d => xS(d.year))
+    .attr("cy", d => yS(d.hl_ratio))
+    .attr("r", 4)
+    .attr("fill", C.heiterkeit)
+    .style("opacity", 0)
+    .transition().duration(dur).delay((_, i) => i * 25)
+    .style("opacity", 0.6);
+
+  // Smooth line
+  const line = d3.line()
+    .x(d => xS(d.year))
+    .y(d => yS(d.hl_ratio))
+    .curve(d3.curveMonotoneX);
+
+  content.append("path")
+    .datum(lachenData.filter(d => d.year >= 1999))
+    .attr("fill", "none")
+    .attr("stroke", C.heiterkeit)
+    .attr("stroke-width", 2.5)
+    .attr("d", line)
+    .attr("stroke-dasharray", function() { return this.getTotalLength(); })
+    .attr("stroke-dashoffset", function() { return this.getTotalLength(); })
+    .transition().duration(dur * 2).ease(d3.easeQuadOut)
+    .attr("stroke-dashoffset", 0);
+
+  // 50% reference line
+  content.append("line")
+    .attr("x1", 0).attr("x2", w)
+    .attr("y1", yS(0.5)).attr("y2", yS(0.5))
+    .attr("stroke", "var(--stone-300)")
+    .attr("stroke-width", 1).attr("stroke-dasharray", "3 3")
+    .style("opacity", 0).transition().duration(dur).style("opacity", 0.5);
+  content.append("text")
+    .attr("x", w - 4).attr("y", yS(0.5) - 6)
+    .attr("text-anchor", "end")
+    .style("font-family", "'JetBrains Mono', monospace")
+    .style("font-size", "9px").style("fill", "var(--stone-300)")
+    .text("50% = equal")
+    .style("opacity", 0).transition().duration(dur).style("opacity", 0.5);
+
+  addAnnotationLine(annot, "2017-10-24", "AfD enters", dur);
+}
+
+// ─── Scroll Observer ───
+
+function setupScroll() {
+  const steps = [...document.querySelectorAll(".step")];
+
+  function findActiveStep() {
+    const mid = window.innerHeight * 0.45;
+    let best = null, bestDist = Infinity;
+    for (const el of steps) {
+      const rect = el.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const dist = Math.abs(center - mid);
+      if (dist < bestDist) { bestDist = dist; best = el; }
+    }
+    if (best) updateChart(best.dataset.step);
+  }
+
+  let scrollRaf = null;
+  window.addEventListener("scroll", () => {
+    if (scrollRaf) cancelAnimationFrame(scrollRaf);
+    scrollRaf = requestAnimationFrame(findActiveStep);
+  }, { passive: true });
+
+  findActiveStep();
+}
+</script>
+</body>
+</html>
